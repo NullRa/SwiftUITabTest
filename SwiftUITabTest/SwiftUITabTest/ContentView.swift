@@ -33,11 +33,14 @@ enum TabItemType: String {
 
 struct TabItemView: View {
     let tabItemType: TabItemType
+    var selected: Bool
     
     var body: some View {
         VStack {
             tabItemType.image
+                .foregroundColor(selected ? .red : .blue)
             tabItemType.text
+                .foregroundColor(.black)
         }
     }
 }
@@ -50,41 +53,26 @@ struct TabBarView: View {
             Button {
                 self.index = 0
             } label: {
-                if self.index != 0 {
-                    TabItemView(tabItemType: .home)
-                } else {
-                    TabItemView(tabItemType: .home)
-                }
+                TabItemView(tabItemType: .home, selected: self.index == 0)
+                
             }
             Spacer()
             Button {
                 self.index = 1
             } label: {
-                if self.index != 1 {
-                    TabItemView(tabItemType: .tv)
-                } else {
-                    TabItemView(tabItemType: .tv)
-                }
+                TabItemView(tabItemType: .tv, selected: self.index == 1)
             }
             Spacer()
             Button {
                 self.index = 2
             } label: {
-                if self.index != 2 {
-                    TabItemView(tabItemType: .shop)
-                } else {
-                    TabItemView(tabItemType: .shop)
-                }
+                TabItemView(tabItemType: .shop, selected: self.index == 2)
             }
             Spacer()
             Button {
                 self.index = 3
             } label: {
-                if self.index != 3 {
-                    TabItemView(tabItemType: .notice)
-                } else {
-                    TabItemView(tabItemType: .notice)
-                }
+                TabItemView(tabItemType: .notice, selected: self.index == 3)
             }
             Spacer()
         }
