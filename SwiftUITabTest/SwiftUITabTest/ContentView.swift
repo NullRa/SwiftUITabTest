@@ -49,32 +49,43 @@ struct ContentView: View {
         UITabBar.appearance().unselectedItemTintColor = .green
     }
     var body: some View {
-        TabView(selection: $selection){
-            Text("ItemA Content")
-                .tabItem {
-                    TabItemView(tabItemType: .home)
-                }
-                .tag(0)
+        VStack {
+            Button {
+                let _ = print(selection)
+                selection = (selection + 1)%4
+            } label: {
+                Text("Next Item Button")
+                    .padding(3)
+                    .border(.black, width: 1)
+            }
             
-            Text("ItemB Content")
-                .tabItem {
-                    TabItemView(tabItemType: .tv)
-                }
-                .tag(1)
-            
-            Text("ItemC Content")
-                .tabItem {
-                    TabItemView(tabItemType: .shop)
-                }
-                .tag(2)
-            
-            Text("ItemD Content")
-                .tabItem {
-                    TabItemView(tabItemType: .notice)
-                }
-                .tag(3)
+            TabView(selection: $selection){
+                Text("ItemA Content")
+                    .tabItem {
+                        TabItemView(tabItemType: .home)
+                    }
+                    .tag(0)
+                
+                Text("ItemB Content")
+                    .tabItem {
+                        TabItemView(tabItemType: .tv)
+                    }
+                    .tag(1)
+                
+                Text("ItemC Content")
+                    .tabItem {
+                        TabItemView(tabItemType: .shop)
+                    }
+                    .tag(2)
+                
+                Text("ItemD Content")
+                    .tabItem {
+                        TabItemView(tabItemType: .notice)
+                    }
+                    .tag(3)
+            }
+            .accentColor(.red)
         }
-        .accentColor(.red)
     }
 }
 
