@@ -42,12 +42,58 @@ struct TabItemView: View {
     }
 }
 
+struct TabBarView: View {
+    @Binding var index: Int
+    var body: some View {
+        HStack {
+            Spacer()
+            Button {
+                self.index = 0
+            } label: {
+                if self.index != 0 {
+                    TabItemView(tabItemType: .home)
+                } else {
+                    TabItemView(tabItemType: .home)
+                }
+            }
+            Spacer()
+            Button {
+                self.index = 1
+            } label: {
+                if self.index != 1 {
+                    TabItemView(tabItemType: .tv)
+                } else {
+                    TabItemView(tabItemType: .tv)
+                }
+            }
+            Spacer()
+            Button {
+                self.index = 2
+            } label: {
+                if self.index != 2 {
+                    TabItemView(tabItemType: .shop)
+                } else {
+                    TabItemView(tabItemType: .shop)
+                }
+            }
+            Spacer()
+            Button {
+                self.index = 3
+            } label: {
+                if self.index != 3 {
+                    TabItemView(tabItemType: .notice)
+                } else {
+                    TabItemView(tabItemType: .notice)
+                }
+            }
+            Spacer()
+        }
+    }
+}
+
 struct ContentView: View {
     @State var selection = 0
-    init() {
-        UITabBar.appearance().backgroundColor = .blue
-        UITabBar.appearance().unselectedItemTintColor = .green
-    }
+    
     var body: some View {
         VStack {
             Button {
@@ -58,33 +104,20 @@ struct ContentView: View {
                     .padding(3)
                     .border(.black, width: 1)
             }
-            
-            TabView(selection: $selection){
-                Text("ItemA Content")
-                    .tabItem {
-                        TabItemView(tabItemType: .home)
-                    }
-                    .tag(0)
-                
-                Text("ItemB Content")
-                    .tabItem {
-                        TabItemView(tabItemType: .tv)
-                    }
-                    .tag(1)
-                
-                Text("ItemC Content")
-                    .tabItem {
-                        TabItemView(tabItemType: .shop)
-                    }
-                    .tag(2)
-                
-                Text("ItemD Content")
-                    .tabItem {
-                        TabItemView(tabItemType: .notice)
-                    }
-                    .tag(3)
+            Spacer()
+            ZStack {
+                if self.selection == 0 {
+                    Text("ItemA Content")
+                } else if self.selection == 1 {
+                    Text("ItemB Content")
+                } else if self.selection == 2 {
+                    Text("ItemC Content")
+                } else if self.selection == 3 {
+                    Text("ItemD Content")
+                }
             }
-            .accentColor(.red)
+            Spacer()
+            TabBarView(index: $selection)
         }
     }
 }
