@@ -7,6 +7,41 @@
 
 import SwiftUI
 
+enum TabItemType: String {
+    case home = "Home"
+    case tv = "TV"
+    case shop = "Shop"
+    case notice = "Notice"
+    
+    var image: Image {
+        switch self {
+        case .home:
+            return Image(systemName: "house")
+        case .tv:
+            return Image(systemName: "tv")
+        case .shop:
+            return Image(systemName: "bag")
+        case .notice:
+            return Image(systemName: "sun.min")
+        }
+    }
+    
+    var text: Text {
+        return Text(self.rawValue)
+    }
+}
+
+struct TabItemView: View {
+    let tabItemType: TabItemType
+    
+    var body: some View {
+        VStack {
+            tabItemType.image
+            tabItemType.text
+        }
+    }
+}
+
 struct ContentView: View {
     init() {
         UITabBar.appearance().backgroundColor = .blue
@@ -16,26 +51,22 @@ struct ContentView: View {
         TabView{
             Text("ItemA Content")
                 .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
+                    TabItemView(tabItemType: .home)
                 }
             
             Text("ItemB Content")
                 .tabItem {
-                    Image(systemName: "tv")
-                    Text("TV")
+                    TabItemView(tabItemType: .tv)
                 }
             
             Text("ItemC Content")
                 .tabItem {
-                    Image(systemName: "bag")
-                    Text("Shop")
+                    TabItemView(tabItemType: .shop)
                 }
             
             Text("ItemD Content")
                 .tabItem {
-                    Image(systemName: "sun.min")
-                    Text("Notice")
+                    TabItemView(tabItemType: .notice)
                 }
         }
         .accentColor(.red)
