@@ -76,6 +76,7 @@ struct TabBarView: View {
             }
             Spacer()
         }
+        .background(.green)
     }
 }
 
