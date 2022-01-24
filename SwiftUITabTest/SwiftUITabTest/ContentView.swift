@@ -37,8 +37,22 @@ struct TabItemView: View {
     
     var body: some View {
         VStack {
-            tabItemType.image
-                .foregroundColor(selected ? .red : .blue)
+            if selected {
+                tabItemType.image
+                    .resizable()
+                    .frame(width: 25, height: 30)
+                    .foregroundColor(.red)
+                    .padding()
+                    .background(.gray)
+                    .clipShape(Circle())
+                    .offset(y:-20)
+            } else {
+                tabItemType.image
+                    .resizable()
+                    .frame(width: 25, height: 30)
+                    .foregroundColor(.blue)
+            }
+            
             tabItemType.text
                 .foregroundColor(.black)
         }
@@ -77,6 +91,7 @@ struct TabBarView: View {
             Spacer()
         }
         .background(.green)
+        .animation(.spring(), value: index)
     }
 }
 
