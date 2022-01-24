@@ -34,6 +34,7 @@ struct ContentView: View {
                     Text("Notice")
                 }
         }
+        .accentColor(.red)
     }
 }
 
