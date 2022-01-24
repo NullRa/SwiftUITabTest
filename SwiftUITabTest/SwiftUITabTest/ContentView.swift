@@ -43,31 +43,36 @@ struct TabItemView: View {
 }
 
 struct ContentView: View {
+    @State var selection = 0
     init() {
         UITabBar.appearance().backgroundColor = .blue
         UITabBar.appearance().unselectedItemTintColor = .green
     }
     var body: some View {
-        TabView{
+        TabView(selection: $selection){
             Text("ItemA Content")
                 .tabItem {
                     TabItemView(tabItemType: .home)
                 }
+                .tag(0)
             
             Text("ItemB Content")
                 .tabItem {
                     TabItemView(tabItemType: .tv)
                 }
+                .tag(1)
             
             Text("ItemC Content")
                 .tabItem {
                     TabItemView(tabItemType: .shop)
                 }
+                .tag(2)
             
             Text("ItemD Content")
                 .tabItem {
                     TabItemView(tabItemType: .notice)
                 }
+                .tag(3)
         }
         .accentColor(.red)
     }
