@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    init() {
+        UITabBar.appearance().backgroundColor = .blue
+        UITabBar.appearance().unselectedItemTintColor = .green
+    }
     var body: some View {
         TabView{
             Text("ItemA Content")
